@@ -1,0 +1,27 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Install dependencies (Debian/Ubuntu)
+      become: yes
+      apt:
+        name:
+          - ca-certificates
+          - curl
+          - git
+          - make
+          - jq
+          - docker.io
+          - unzip
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Install kind, kubectl, helm, trivy, infisical
+      become: yes
+      shell: |
+        set -e
+        which kind || (curl -Lo /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/v0.23.0/kind-linux-amd64 && chmod +x /usr/local/bin/kind)
+        which kubectl || (curl -LO https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl && install -m 0755 kubectl /usr/local/bin/kubectl && rm kubectl)
+        which helm || (curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash)
+        which trivy || (curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin)
+        which infisical || (curl -fsSL https://cli.infisical.com/install.sh | bash)

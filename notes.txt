@@ -1,0 +1,7 @@
+PgBouncer => untuk membuat db(postgre) gak ngosngosan/hemat resource untuk connection
+
+kind => Kubernetes in Docker
+
+APM => Application Performance Monitoring
+
+Trivy => Security Scanner untuk Container, File System, Git Repo, Kubernetes Cluster, VM Image/Disk.

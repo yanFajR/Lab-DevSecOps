@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-ingress
+  namespace: apps
+  annotations:
+    nginx.ingress.kubernetes.io/limit-req: "10"
+    nginx.ingress.kubernetes.io/limit-req-burst: "20"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: api.localtest.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend: { service: { name: api, port: { number: 80 } } }

@@ -1,0 +1,6 @@
+{
+  "token": "INFISICAL_MACHINE_IDENTITY_TOKEN",
+  "siteUrl": "http://localhost:8080",
+  "projectId": "YOUR_PROJECT_ID",
+  "environment": "dev"
+}
