@@ -22,4 +22,8 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
 https://apt.releases.hashicorp.com $(lsb_release -cs) main" \
 | sudo tee /etc/apt/sources.list.d/hashicorp.list
 sudo apt-get update && sudo apt-get install -y terraform
+
+# Config Secret
+scripts/sync_infisical_k8s.sh → set INFISICAL_PROJECT_ID
+Siapkan secrets di Infisical (env dev), minimal: DB_USER, DB_PASSWORD, JWT_SECRET
 ```
