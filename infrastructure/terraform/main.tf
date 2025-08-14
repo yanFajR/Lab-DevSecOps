@@ -3,11 +3,13 @@ terraform {
 }
 
 resource "null_resource" "kind_cluster" {
-  triggers = { always = timestamp() }
+  triggers = {
+    always = timestamp()
+  }
   provisioner "local-exec" {
-    command = <<'EOT'
+    command = <<EOT
 set -e
-cat > kind.yaml <<'CFG'
+cat > kind.yaml <<CFG
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 containerdConfigPatches:
